@@ -1,0 +1,9 @@
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+
+.photo_gallery {
+  padding:10px;
+  background-color:#333330;
+}
