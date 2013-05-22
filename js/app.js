@@ -34,14 +34,6 @@ App.PhotosController = Ember.ArrayController.extend({
   sortProperties: ['id']
 });
 
-App.PhotoView = Ember.View.extend({
-  elementId: 'content',
-  keyPress: function(keypressed) {
-    console.log(e);
-    alert(1);
-  }
-});
-
 App.Photo = DS.Model.extend({
   title: DS.attr('string'),
   caption: DS.attr('string'),
