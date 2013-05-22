@@ -69,8 +69,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 9, ../sass/screen.scss */
 .photo_gallery {
-  padding-top: 20px;
-  background-color: #333330;
   overflow: hidden;
   *zoom: 1;
+}
+/* line 12, ../sass/screen.scss */
+.photo_gallery img {
+  padding-bottom: 20px;
 }

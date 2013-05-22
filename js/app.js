@@ -1,11 +1,124 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  // put your routes here
+  this.resource('photos', function() {
+    this.resource('photo', { path: ':photo_id' });
+  });
 });
 
+
 App.IndexRoute = Ember.Route.extend({
-  model: function() {
-    return [1,2,3,4,5,6,7,8,9];
+  redirect: function() {
+    this.transitionTo('photos');
   }
 });
+
+App.PhotosRoute = Ember.Route.extend({
+  model: function() {
+    return App.Photo.all();
+  }
+});
+
+App.PhotosRoute = Ember.Route.extend({
+  model: function(params) {
+    return App.Photo.find(params.photo_id);
+  }
+});
+
+App.Store = DS.Store.extend({
+  revision: 12,
+  adapter: 'DS.FixtureAdapter'
+});
+
+App.PhotosController = Ember.ArrayController.extend({
+  sortProperties: ['id']
+});
+
+App.PhotoView = Ember.View.extend({
+  elementId: 'content',
+  keyPress: function(keypressed) {
+    console.log(e);
+    alert(1);
+  }
+});
+
+App.Photo = DS.Model.extend({
+  title: DS.attr('string'),
+  caption: DS.attr('string'),
+  xDimension: DS.attr('number'),
+  yDimension: DS.attr('number'),
+  author: DS.attr('string'),
+  
+  imageUrl: function() {
+    return "images/" + this.get('id') + ".jpg";
+  }.property('id'),
+  
+  description: function() {
+    return this.get('title') + ' by ' + this.get('author') + '<br/>' + this.get('caption');
+  }.property('title', 'author', 'caption')
+})
+
+App.Photo.FIXTURES = [{
+  title: "Island of Monarchs",
+  caption: "Georges Island, Boston Harbor",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:1
+}, {
+  title: "Home Sweet Home",
+  caption: "Boston from Memorial Drive during evening lightning storm.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:2
+}, {
+  title: "Cloudy Day",
+  caption: "Little fluffy clouds.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:3
+}, {
+  title: "Gold Cap",
+  caption: "Glowing forest floor in Deer Jump Park, Andover.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:4
+}, {
+  title: "Dragon Wings",
+  caption: "Dragonfly perched trailside near Pomp's Pond.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Larry Bird's brother",
+  id:5
+}, {
+  title: "The Hangover 4",
+  caption: "Tree bough hanging over the Shawsheen River in Deer Jump Park, Andover.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:6
+}, {
+  title: "Moonrock Morning",
+  caption: 'View of Mount Washington from "Moonrock" campsite on Mount Jefferson.',
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:7
+}, {
+  title: "Permanently Frosted",
+  caption: "Permafrost on peak of Mt. Jefferson, October 2010.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:8
+}, {
+  title: "North by Northwest",
+  caption: "Plane taking off alongside bus in Martha's Vinyard.",
+  xDimension: "400",
+  yDimension: "300",
+  author: "Patrick Holloway",
+  id:9
+}];

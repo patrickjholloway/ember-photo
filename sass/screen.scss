@@ -7,7 +7,9 @@
 @import "compass/utilities/general/clearfix";
 
 .photo_gallery {
-  padding-top:20px;
-  background-color:#333330;
+  //background-color:#000;
   @include clearfix;
+  img {
+    padding-bottom:20px;
+  }
 }
