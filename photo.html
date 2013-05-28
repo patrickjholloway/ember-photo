@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/screen.css">
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+</head>
+<body>
+
+  <script type="text/x-emblem" data-template-name="application">
+    .row
+      .large-12.columns
+        h1 Welcome to Ember.js
+        outlet
+  </script>
+  
+  <!-- HANDLEBARS
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class='row'>
+        <div class='large-12 columns'>
+          <h1>Welcome to Ember.js</h1>
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+  //-->
+  
+  <script type="text/x-emblem" data-template-name="photos">
+    .row
+      .photo_gallery.large-4.columns
+        h2 Photos
+        partial photoThumbnails
+      .photo_gallery.large-8.columns
+        outlet
+  </script>
+  
+  <script type="text/x-emblem" data-template-name="_photoThumbnails">
+    each photo in controller
+      .photo_gallery.large-6.columns
+        linkTo photo photo
+          img src=photo.imageUrl title=photo.title alt=photo.title
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="photo">
+    <h2>{{title}}</h2>
+    <img {{ bindAttr src="imageUrl" title="title" alt="title" }}>
+    <p class="description">{{{description}}}</p>
+  </script>
+
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+  <script src="js/emblem.js"></script>
+  <script src="js/libs/ember-1.0.0-rc.3.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script>$(document).foundation();</script>
+
+</body>
+</html>

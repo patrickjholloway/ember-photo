@@ -6,32 +6,15 @@ App.Router.map(function() {
   });
 });
 
-
-App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
-    this.transitionTo('photos');
-  }
-});
-
 App.PhotosRoute = Ember.Route.extend({
   model: function() {
-    return App.Photo.all();
-  }
-});
-
-App.PhotosRoute = Ember.Route.extend({
-  model: function(params) {
-    return App.Photo.find(params.photo_id);
+    return App.Photo.find();
   }
 });
 
 App.Store = DS.Store.extend({
   revision: 12,
   adapter: 'DS.FixtureAdapter'
-});
-
-App.PhotosController = Ember.ArrayController.extend({
-  sortProperties: ['id']
 });
 
 App.Photo = DS.Model.extend({
@@ -46,7 +29,7 @@ App.Photo = DS.Model.extend({
   }.property('id'),
   
   description: function() {
-    return this.get('title') + ' by ' + this.get('author') + '<br/>' + this.get('caption');
+    return '<b>' + this.get('title') + '</b>' + ' by ' + this.get('author') + '<br/><em>' + this.get('caption') + '<em>';
   }.property('title', 'author', 'caption')
 })
 
