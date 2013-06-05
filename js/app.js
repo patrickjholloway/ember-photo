@@ -6,6 +6,12 @@ App.Router.map(function() {
   });
 });
 
+App.IndexRoute = Ember.Route.extend({
+  redirect: function(){
+    this.transitionTo('photos');
+  }
+});
+
 App.PhotosRoute = Ember.Route.extend({
   model: function() {
     return App.Photo.find();
@@ -66,7 +72,7 @@ App.Photo.FIXTURES = [{
   caption: "Dragonfly perched trailside near Pomp's Pond.",
   xDimension: "400",
   yDimension: "300",
-  author: "Larry Bird's brother",
+  author: "Patrick Holloway",
   id:5
 }, {
   title: "The Hangover 4",
